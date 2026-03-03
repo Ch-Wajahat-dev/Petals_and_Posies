@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Petals &amp; Posies</title>
+    <link rel="shortcut icon" type="image" href="img/favi.jpeg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+        :root { --pink:#d34572; --light-pink:#fabcd1; }
+
+        body { background: linear-gradient(135deg,#fae9f5,#ffc3ee); min-height:100vh; }
+
+        /* Navbar */
+        nav {
+            background: var(--light-pink);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .nav-logo { font-size:1.3rem; font-weight:700; color:#000; text-decoration:none; }
+        .nav-logo span { color: var(--pink); }
+        nav a.back-btn {
+            color: var(--pink); font-size:14px; font-weight:600; text-decoration:none;
+            display:flex; align-items:center; gap:6px;
+        }
+        nav a.back-btn:hover { color:#a02e56; }
+
+        /* Layout */
+        .checkout-wrapper {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px 40px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
+        }
+
+        /* Form */
+        .checkout-form {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        .checkout-form h2 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #fdd6e0;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-group { margin-bottom: 16px; }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 6px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid #e0c8d8;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+            background: #fdf8fb;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--pink);
+        }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--pink);
+            margin: 24px 0 14px;
+        }
+
+        .payment-options { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+        .pay-opt {
+            display: flex; align-items: center; gap: 8px;
+            background: #fdf3f8; border: 1.5px solid #e0c8d8;
+            border-radius: 8px; padding: 10px 18px; cursor: pointer;
+            transition: 0.2s;
+        }
+        .pay-opt:has(input:checked) { border-color: var(--pink); background: #fde8f2; }
+        .pay-opt input { accent-color: var(--pink); }
+        .pay-opt label { cursor: pointer; font-size: 14px; font-weight: 500; }
+
+        /* Order Summary */
+        .order-summary {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 20px;
+        }
+        .order-summary h2 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fdd6e0;
+        }
+        .order-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0e0e8;
+            font-size: 14px;
+        }
+        .order-item .item-info { display: flex; align-items: center; gap: 10px; }
+        .order-item img { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; }
+        .order-item .item-details { font-size: 13px; }
+        .order-item .item-details span { display: block; color: #888; font-size: 12px; }
+        .order-item .item-price { font-weight: 600; color: var(--pink); white-space: nowrap; }
+        .empty-cart { text-align: center; color: #999; padding: 20px 0; font-size: 14px; }
+
+        .summary-row {
+            display: flex; justify-content: space-between;
+            margin-top: 14px; font-size: 14px;
+        }
+        .summary-row.total {
+            font-weight: 700; font-size: 1rem; color: var(--pink);
+            border-top: 2px solid #fdd6e0; padding-top: 12px; margin-top: 12px;
+        }
+
+        .delivery-note {
+            background: #fdf3f8; border-radius: 8px; padding: 10px 14px;
+            font-size: 12px; color: #666; margin-top: 16px;
+        }
+        .delivery-note i { color: var(--pink); margin-right: 6px; }
+
+        /* Place Order button */
+        .place-order-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--pink);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+        .place-order-btn:hover { background: #a8305a; }
+
+        /* Success message */
+        .success-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+            justify-content: center; align-items: center;
+        }
+        .success-overlay.show { display: flex; }
+        .success-box {
+            background: #fff; border-radius: 16px;
+            padding: 40px; text-align: center; max-width: 400px;
+            animation: popIn 0.3s ease;
+        }
+        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .success-box i { font-size: 3rem; color: #28a745; margin-bottom: 16px; }
+        .success-box h2 { margin-bottom: 10px; color: #333; }
+        .success-box p { color: #666; font-size: 14px; margin-bottom: 20px; }
+        .success-box a {
+            display: inline-block; padding: 10px 24px;
+            background: var(--pink); color: #fff; border-radius: 8px;
+            text-decoration: none; font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-wrapper { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            nav { padding: 12px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html" class="nav-logo">Petals<span>Posies</span></a>
+        <a href="cart.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Shop</a>
+    </nav>
+
+    <div class="checkout-wrapper">
+
+        <!-- Checkout Form -->
+        <div class="checkout-form">
+            <h2><i class="fa-solid fa-truck" style="color:#d34572;margin-right:8px;"></i>Delivery Information</h2>
+
+            <form id="checkoutForm" onsubmit="placeOrder(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name *</label>
+                        <input type="text" id="firstName" placeholder="e.g. Aiman" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name *</label>
+                        <input type="text" id="lastName" placeholder="e.g. Khalid" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phone" placeholder="+92 300 0000000" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Delivery Address *</label>
+                    <input type="text" id="address" placeholder="House/Street/Area" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>City *</label>
+                        <input type="text" id="city" placeholder="e.g. Faisalabad" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Option *</label>
+                        <select id="delivery" required>
+                            <option value="">-- Select --</option>
+                            <option value="standard">Standard (2-3 days) - Free</option>
+                            <option value="express">Express (Next Day) - 200 PKR</option>
+                            <option value="sameday">Same Day - 350 PKR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Gift Message (Optional)</label>
+                    <textarea id="giftMsg" placeholder="Write a personal message for the recipient..."></textarea>
+                </div>
+
+                <p class="section-title"><i class="fa-solid fa-credit-card"></i> Payment Method</p>
+
+                <div class="payment-options">
+                    <div class="pay-opt">
+                        <input type="radio" name="payment" id="cod" value="cod" checked>
+                        <label for="cod"><i class="fa-solid fa-money-bill-wave" style="color:#28a745;"></i> Cash on Delivery</label>
+                    </div>
+                    <div class="pay-opt">
+                        <input type="radio" name="payment" id="easypaisa" value="easypaisa">
+                        <label for="easypaisa"><i class="fa-solid fa-mobile" style="color:#45c148;"></i> Easypaisa</label>
+                    </div>
+                    <div class="pay-opt">
+                        <input type="radio" name="payment" id="jazzcash" value="jazzcash">
+                        <label for="jazzcash"><i class="fa-solid fa-wallet" style="color:#e74c3c;"></i> JazzCash</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="place-order-btn">
+                    <i class="fa-solid fa-bag-shopping"></i> Place Order
+                </button>
+            </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <h2><i class="fa-solid fa-receipt" style="color:#d34572;margin-right:6px;"></i>Order Summary</h2>
+            <div id="orderItems"></div>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">0 PKR</span>
+            </div>
+            <div class="summary-row">
+                <span>Delivery</span>
+                <span id="deliveryCost">Free</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span id="grandTotal">0 PKR</span>
+            </div>
+
+            <div class="delivery-note">
+                <i class="fa-solid fa-circle-info"></i>
+                Free delivery on orders above 2,500 PKR. Same-day delivery available in selected areas.
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-box">
+            <i class="fa-solid fa-circle-check"></i>
+            <h2>Order Placed!</h2>
+            <p>Thank you for your order. We'll contact you shortly to confirm your delivery details.</p>
+            <a href="index.html">Continue Shopping</a>
+        </div>
+    </div>
+
+    <script>
+        const orderItems     = document.getElementById('orderItems');
+        const subtotalEl     = document.getElementById('subtotal');
+        const grandEl        = document.getElementById('grandTotal');
+        const deliverySel    = document.getElementById('delivery');
+        const deliveryCostEl = document.getElementById('deliveryCost');
+        const deliveryFees   = { standard: 0, express: 200, sameday: 350, '': 0 };
+
+        // Load cart: support both old sparse-array format and new object format
+        const rawCart = JSON.parse(localStorage.getItem('ppCart') || 'null');
+        let cartItems = [];   // [{ _id, name, image, price, quantity }]
+
+        if (rawCart) {
+            if (Array.isArray(rawCart)) {
+                cartItems = rawCart.filter(Boolean);
+            } else if (typeof rawCart === 'object') {
+                cartItems = Object.values(rawCart).filter(Boolean);
+            }
+        }
+
+        let subtotal = 0;
+        let hasItems = cartItems.length > 0;
+
+        cartItems.forEach(item => {
+            const lineTotal = item.price * item.quantity;
+            subtotal += lineTotal;
+            orderItems.innerHTML += `
+                <div class="order-item">
+                    <div class="item-info">
+                        <img src="img/${item.image}" alt="${item.name}">
+                        <div class="item-details">
+                            ${item.name}
+                            <span>Qty: ${item.quantity}</span>
+                        </div>
+                    </div>
+                    <div class="item-price">${lineTotal.toLocaleString()} PKR</div>
+                </div>`;
+        });
+
+        if (!hasItems) {
+            orderItems.innerHTML = '<p class="empty-cart">No items in cart. <a href="cart.html">Shop now</a></p>';
+        }
+
+        function updateTotal() {
+            const fee = deliveryFees[deliverySel.value] || 0;
+            deliveryCostEl.textContent = fee ? fee + ' PKR' : 'Free';
+            grandEl.textContent = (subtotal + fee).toLocaleString() + ' PKR';
+        }
+
+        subtotalEl.textContent = subtotal.toLocaleString() + ' PKR';
+        updateTotal();
+        deliverySel.addEventListener('change', updateTotal);
+
+        async function placeOrder(e) {
+            e.preventDefault();
+            if (!hasItems) { alert('Your cart is empty!'); return; }
+
+            const token = localStorage.getItem('ppToken');
+
+            const deliveryInfo = {
+                firstName: document.getElementById('firstName').value.trim(),
+                lastName:  document.getElementById('lastName').value.trim(),
+                email:     document.getElementById('email').value.trim(),
+                phone:     document.getElementById('phone').value.trim(),
+                address:   document.getElementById('address').value.trim(),
+                city:      document.getElementById('city').value.trim(),
+                delivery:  deliverySel.value
+            };
+            const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value || 'cod';
+            const giftMessage   = document.getElementById('giftMsg').value.trim();
+
+            if (token) {
+                // Logged in: POST to API
+                try {
+                    const res = await fetch('/api/orders', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            items: cartItems.map(i => ({
+                                product: i._id,
+                                name: i.name,
+                                image: i.image,
+                                price: i.price,
+                                quantity: i.quantity
+                            })),
+                            deliveryInfo,
+                            paymentMethod,
+                            giftMessage
+                        })
+                    });
+                    if (!res.ok) {
+                        const data = await res.json();
+                        alert(data.message || 'Failed to place order');
+                        return;
+                    }
+                } catch {
+                    alert('Network error. Please try again.');
+                    return;
+                }
+            }
+
+            // Clear cart and show success
+            localStorage.removeItem('ppCart');
+            document.getElementById('successOverlay').classList.add('show');
+        }
+    </script>
+    <script src="chatbot.js"></script>
+</body>
+</html>

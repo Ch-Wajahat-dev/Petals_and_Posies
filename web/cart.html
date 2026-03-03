@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Petals &amp; Posies</title>
+    <link rel="shortcut icon" type="image" href="img/favi.jpeg">
+    <!--Link To Css-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styl.css">
+    <!--Box Icons-->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-petals"></div>
+        <p class="loader-brand">Petals<span>Posies</span></p>
+    </div>
+
+    <!-- Navbar (same as index.html) -->
+    <header>
+        <a href="index.html" class="logo">Petals<span>Posies</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <ul class="navbar">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#shop">Shop</a></li>
+            <li><a href="index.html#new">New Arrival</a></li>
+            <li><a href="index.html#offerSection">Offer</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li id="li-login"><button id="btn-login"><a href="login.html">Log In</a></button></li> &nbsp;
+            <li id="li-signup"><a href="signup.html"><i class="fa-solid fa-user"></i></a></li>
+            <li id="li-navuser"><span id="navUser"></span></li>
+            <li style="position:relative;">
+                <div class="shopping" title="View Cart" style="cursor:pointer;display:inline-flex;align-items:center;">
+                    <i class="fa-solid fa-cart-shopping" style="font-size:23px;color:#030303;margin-left:10px;"></i>
+                    <span class="quantity" style="background:#d34572;border-radius:50%;color:#fff;position:absolute;top:-6px;right:-8px;min-width:18px;height:18px;display:flex;justify-content:center;align-items:center;font-size:11px;padding:0 3px;">0</span>
+                </div>
+            </li> &nbsp;&nbsp;
+        </ul>
+    </header>
+
+    <!-- Search bar below header -->
+    <div class="cart-search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search flowers...">
+    </div>
+
+    <!-- Product List -->
+    <div class="container">
+        <div class="list"></div>
+    </div>
+
+    <!-- Sliding Cart Panel -->
+    <div class="card">
+        <h1>Shopping Cart</h1>
+        <ul class="listCard"></ul>
+        <div class="checkOut">
+            <div class="total">Total: 0 PKR</div>
+            <div class="checkoutBtn">Checkout</div>
+            <div class="closeShopping">Close</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <section class="footer" id="footer">
+        <div class="footer-box">
+            <h2>Petals <span>Posies</span></h2>
+            <p>
+               Main Bazar, Shop# 09<br>
+               Street# 01, PirMahal<br>
+                <br>
+                <strong>Phone:</strong> +92 304 1169537<br>
+                <strong>Email:</strong> <a href="mailto:samda6@gmail.com">samda6@gmail.com</a>
+            </p>
+        </div>
+        <div class="footer-box">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About Us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html#offer">Offers</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h4>Our Services</h4>
+            <ul>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Bouquets</a></li>
+                <li><i class="bx bx-chevron-right"></i> Gift Baskets</li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Wedding Decor</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Wedding Flowers</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Flower Arrangements</a></li>
+            </ul>
+        </div>
+        <div class="footer-box contact-info">
+            <h4>Our Social Networks</h4>
+            <p>Connect with us on social media.</p>
+            <div class="social">
+              <a href="#" class="google"><i class="fa-brands fa-google-plus-g"></i></a>
+              <a href="#" class="facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="twitter"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+    <div class="copyright">
+        <p>&#169; <span style="color:#000000d6;">Petals</span><span style="color:#ff618e;">Posies</span> All Rights Reserved.</p>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="app.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>

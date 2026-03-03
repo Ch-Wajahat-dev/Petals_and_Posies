@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Petals &amp; Posies</title>
+    <link rel="shortcut icon" type="image" href="img/favi.jpeg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+        :root { --pink:#d34572; --light:#fabcd1; --bg:#fae9f5; }
+
+        body { background: var(--bg); min-height:100vh; }
+
+        nav {
+            background: var(--light);
+            display:flex; align-items:center; justify-content:space-between;
+            padding:14px 40px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+        .nav-logo { font-size:1.3rem; font-weight:700; color:#000; text-decoration:none; }
+        .nav-logo span { color:var(--pink); }
+        .nav-right { display:flex; gap:16px; align-items:center; }
+        .nav-right a { color:#555; text-decoration:none; font-size:14px; }
+        .nav-right a:hover { color:var(--pink); }
+
+        .page-wrapper {
+            max-width:900px; margin:40px auto; padding:0 20px 60px;
+        }
+
+        h1 { font-size:1.5rem; color:#333; margin-bottom:24px; }
+        h1 i { color:var(--pink); margin-right:8px; }
+
+        .order-card {
+            background:#fff; border-radius:12px;
+            padding:24px; margin-bottom:20px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.07);
+        }
+        .order-header {
+            display:flex; justify-content:space-between; align-items:center;
+            margin-bottom:16px; padding-bottom:12px;
+            border-bottom:2px solid #fdd6e0;
+            flex-wrap:wrap; gap:10px;
+        }
+        .order-id { font-size:13px; color:#888; }
+        .order-date { font-size:13px; color:#888; }
+        .badge {
+            display:inline-block; padding:4px 14px; border-radius:20px;
+            font-size:12px; font-weight:600;
+        }
+        .badge-pending   { background:#fff3cd; color:#856404; }
+        .badge-confirmed { background:#d1ecf1; color:#0c5460; }
+        .badge-shipped   { background:#cce5ff; color:#004085; }
+        .badge-delivered { background:#d4edda; color:#155724; }
+        .badge-cancelled { background:#f8d7da; color:#721c24; }
+
+        .order-items-list { list-style:none; margin-bottom:14px; }
+        .order-items-list li {
+            display:flex; align-items:center; gap:12px;
+            padding:8px 0; border-bottom:1px solid #f5e8ee;
+            font-size:14px;
+        }
+        .order-items-list li img {
+            width:48px; height:48px; object-fit:cover; border-radius:6px;
+        }
+        .item-detail { flex:1; }
+        .item-detail small { color:#888; font-size:12px; }
+        .item-price { font-weight:600; color:var(--pink); white-space:nowrap; }
+
+        .order-footer {
+            display:flex; justify-content:space-between; align-items:center;
+            flex-wrap:wrap; gap:10px; margin-top:8px;
+        }
+        .order-footer .meta { font-size:13px; color:#666; }
+        .order-total { font-weight:700; font-size:1rem; color:var(--pink); }
+
+        .empty-state {
+            text-align:center; padding:60px 20px; color:#aaa;
+        }
+        .empty-state i { font-size:3rem; margin-bottom:16px; color:#dbb; }
+        .empty-state p { margin-bottom:20px; }
+        .btn-shop {
+            display:inline-block; padding:10px 28px;
+            background:var(--pink); color:#fff; border-radius:8px;
+            text-decoration:none; font-weight:600;
+        }
+
+        @media (max-width:600px) {
+            nav { padding:12px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">Petals<span>Posies</span></a>
+    <div class="nav-right">
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Shop</a>
+        <a href="#" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <h1><i class="fa-solid fa-clock-rotate-left"></i>My Orders</h1>
+    <div id="ordersContainer">
+        <div class="empty-state">
+            <i class="fa-solid fa-box-open"></i>
+            <p>Loading your orders...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const token = localStorage.getItem('ppToken');
+    if (!token) {
+        alert('Please log in to view your orders.');
+        window.location.href = 'login.html';
+    }
+
+    document.getElementById('logoutBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('ppToken');
+        localStorage.removeItem('ppUser');
+        localStorage.removeItem('ppCart');
+        window.location.href = 'index.html';
+    });
+
+    async function loadOrders() {
+        const container = document.getElementById('ordersContainer');
+        try {
+            const res = await fetch('/api/orders/my', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!res.ok) throw new Error('Failed to load orders');
+            const orders = await res.json();
+
+            if (!orders.length) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-box-open"></i>
+                        <p>You haven't placed any orders yet.</p>
+                        <a href="cart.html" class="btn-shop">Start Shopping</a>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = orders.map(o => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <div>
+                            <div class="order-id">Order #${o._id.slice(-8).toUpperCase()}</div>
+                            <div class="order-date">${new Date(o.createdAt).toLocaleDateString('en-PK', { year:'numeric', month:'long', day:'numeric' })}</div>
+                        </div>
+                        <span class="badge badge-${o.status}">${o.status.charAt(0).toUpperCase() + o.status.slice(1)}</span>
+                    </div>
+
+                    <ul class="order-items-list">
+                        ${o.items.map(item => `
+                            <li>
+                                <img src="img/${item.image}" alt="${item.name}" onerror="this.src='img/favi.jpeg'">
+                                <div class="item-detail">
+                                    ${item.name}
+                                    <small>Qty: ${item.quantity}</small>
+                                </div>
+                                <div class="item-price">${(item.price * item.quantity).toLocaleString()} PKR</div>
+                            </li>`).join('')}
+                    </ul>
+
+                    <div class="order-footer">
+                        <div class="meta">
+                            <span>Payment: <strong>${o.paymentMethod.toUpperCase()}</strong></span>
+                            &nbsp;|&nbsp;
+                            <span>Delivery: <strong>${o.deliveryInfo?.city || ''}</strong></span>
+                            ${o.deliveryCost ? `&nbsp;|&nbsp;<span>Delivery fee: <strong>${o.deliveryCost} PKR</strong></span>` : ''}
+                        </div>
+                        <div class="order-total">Total: ${o.totalAmount.toLocaleString()} PKR</div>
+                    </div>
+                </div>`).join('');
+
+        } catch {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <p>Failed to load orders. Make sure the server is running.</p>
+                </div>`;
+        }
+    }
+
+    loadOrders();
+</script>
+    <script src="chatbot.js"></script>
+</body>
+</html>

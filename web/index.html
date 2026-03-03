@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Shop</title>
+    <link rel="shortcut icon" type="image" href="img/favi.jpeg">
+    <!--Link To Css-->
+    <link rel="stylesheet" href="style.css">
+    
+    <!--Box Icons-->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+     <!-- Link To JS -->
+     <script src="main.js" defer></script>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-petals"></div>
+        <p class="loader-brand">Petals<span>Posies</span></p>
+    </div>
+
+    <!--Navbar-->
+    
+    <header>
+       
+        <a href="#" class="logo">Petals<span>Posies</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <ul class="navbar">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">shop</a></li>
+            <li><a href="#new">New Arrival</a></li>
+            <li><a href="#offerSection">Offer </a></li>
+            <li><a href="#about">About</a></li>
+            
+            <li><a href="#contact">Contact</a></li>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <li id="li-login"><button id="btn-login"><a href="login.html">Log In</a></button></li> &nbsp;
+          <li id="li-signup"><a href="signup.html"><i class="fa-solid fa-user"></i></a></li>
+          <li id="li-navuser"><span id="navUser"></span></li>
+          <li style="position:relative;"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i><span class="cart-badge" style="position:absolute;top:-6px;right:-8px;background:#d34572;color:#fff;border-radius:50%;font-size:11px;min-width:18px;height:18px;display:none;justify-content:center;align-items:center;padding:0 3px;">0</span></a></li> &nbsp; &nbsp;
+
+           
+
+        </ul>
+       
+    </header>
+    <!--Home-->
+    
+            <section class="home" id="home">
+    <div class="home-text">
+        <h1><span style="color: #9e448ad6;">Petals</span> and <span style="color: #680b3e;">Posies</span> <br> Your Local Flower Shop
+        </h1>
+        <p style="font-size: 18px; font-style: italic;">"Where petals unfold, memories bloom...".</p>
+        <a href="#new" class="btn">Explore Our Blooming Collection</a>
+    </div>
+</section>
+
+<!--shop-->
+<section class="shop" id="shop">
+    <div class="heading">
+        <span>Our Collection</span>
+        <h2>Shop Now</h2>
+    </div>
+
+    <!-- Content — filled from DB -->
+    <div class="shop-container" id="shopContainer">
+        <!-- loading skeleton -->
+        <div class="box" style="opacity:.4;" id="shopSkeleton">
+            <div class="box-img"><img src="img/02 (2).jpg" alt=""></div>
+            <div class="title-price"><h3>Loading...</h3></div>
+            <span>— PKR</span>
+        </div>
+    </div>
+    </section>
+
+<!--New Arrival-->
+<section class="new" id="new">
+    <div class="heading">
+        <span>New Arrival</span>
+        <h2>Our Bestsellers</h2>
+    </div>
+    <!--content — filled from DB-->
+    <div class="new-container" id="newContainer"></div>
+
+
+    
+</section>
+
+
+
+
+
+<!-- 
+        - #OFFER
+      -->
+
+      <section class="section offer" id="offerSection" aria-label="offer" data-section style="display:none;">
+        <div class="container" id="offerContainer"></div>
+      </section>
+
+
+
+ <!-- /* icons section start */ -->
+ <section class="icons_container">
+    <!-- icons-1 -->
+    <div class="icons">
+      <i class="fa-solid fa-shopping-bag"></i>
+      <div class="info">
+        <h3>Free Delivery</h3>
+        <span>On order over 2500PKR</span>
+      </div>
+    </div>
+
+    <!-- icons-2 -->
+    <div class="icons">
+      <i class="fa-solid fa-truck"></i>
+      <div class="info">
+        <h3>Fast Delivery</h3>
+        <span>All over Pakistan</span>
+      </div>
+    </div>
+
+    <!-- icons-3 -->
+    <div class="icons">
+      <i class="fa-solid fa-gift"></i>
+      <div class="info">
+        <h3>Offer & Gifts</h3>
+        <span>Customized your order</span>
+      </div>
+    </div>
+
+    <!-- icons-4 -->
+    <div class="icons">
+      <i class="fa-solid fa-thumbs-up"></i>
+      <div class="info">
+        <h3>Big Choice</h3>
+        <span>Of products</span>
+      </div>
+    </div>
+
+
+
+  </section>
+  <!-- icons section end -->
+
+
+<!--About-->
+<section class="about" id="about">
+    <div class="about-video">
+        <video controls autoplay="play" loop="loop">
+            <source src="img/video about.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          
+    </div>
+    <div class="about-text">
+        <span>About Us</span>
+        <p>Learn more about our story and mission.</p>
+        <h2>Our Story</h2>
+        <p>Petals and Posies is a family-owned flower shop dedicated to providing the freshest flowers and most beautiful arrangements in town. Our story began with a passion for nature and a love for sharing that beauty with others.</p>
+        <h2>Our Mission</h2>
+        <p>To provide exceptional customer service, high-quality products, and a personalized touch to make every occasion special.</p>
+       
+        <a href="#" class="btn">Learn More</a>
+    </div>
+</section>
+
+
+<section class="newsletter" id="contact">
+    <h2>Subscribe To Newsletter</h2>
+    <div class="news-box">
+        <input type="email" placeholder="Enter Your Email..." required>
+        <button onclick="confirm('Enter your Email Adress')" class="btn">Subscribe</button>
+    </div>
+</section>
+
+
+ <!-- Footer -->
+ <section class="footer" id="footer">
+    <div class="footer-box">
+        <h2>Petals <span>Posies</span></h2>
+        <p>
+           Main Bazar, Shop# 09<br>
+           Street# 01, PirMahal<br>
+            <br>
+            <strong>Phone:</strong> +92 304 1169537<br>
+            <strong>Email:</strong><a href="#mail">samda6@gmail.com</a><br>
+          </p>
+            </div>
+    </div>
+    <div class="footer-box">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+        </ul>
+    </div>
+    <div class="footer-box">
+        <h4>Our Services</h4>
+        <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#"> Bouquets</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#"></a>Gift Baskets</li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Wedding Decor</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Wedding Flowers</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Flower arrangements</a></li>
+        </ul>
+    </div>
+    <div class="footer-box contact-info">
+        <h4>Our Social Networks</h4>
+        <p>You can connect us through our social media channels.</p>
+        <div class="social">
+          
+          <a href="#" class="google"><i class="fa-brands fa-google-plus-g"></i></a>
+          <a href="#" class="facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="twitter"><i class="fa-brands fa-linkedin-in"></i></a>
+          
+        </div>
+    </div>
+</section>
+<div class="copyright">
+    <p>&#169; <span style="color: #000000d6;">Petals</span><span style="color: #ff618e;">Posies</span> All Right Reserved.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+<script>
+    const stars = `<div class="stars">
+        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i></div>`;
+
+    function makeBox(p) {
+        // Encode product data safely for inline onclick
+        const encoded = encodeURIComponent(JSON.stringify(p));
+        return `
+        <div class="box">
+            <a href="cart.html" style="display:block;text-decoration:none;">
+                <div class="box-img">
+                    <img src="img/${p.image}" alt="${p.name}" onerror="this.src='img/favi.jpeg'">
+                </div>
+            </a>
+            <div class="title-price">
+                <h3>${p.name}</h3>
+                ${stars}
+            </div>
+            <span>${p.price.toLocaleString()} PKR</span>
+            <button class="cart-btn" onclick="addToCart(this, '${p._id}', decodeURIComponent('${encoded}'))">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+        </div>`;
+    }
+
+    // ----- Add to Cart -----
+    function addToCart(btn, productId, productJson) {
+        const product = JSON.parse(productJson);
+
+        // Load existing cart (object format: { _id: {..., quantity} })
+        let cart = {};
+        try {
+            const raw = JSON.parse(localStorage.getItem('ppCart') || 'null');
+            if (raw && !Array.isArray(raw)) cart = raw;
+            else if (Array.isArray(raw)) {
+                raw.forEach(item => { if (item && item._id) cart[item._id] = item; });
+            }
+        } catch {}
+
+        // Add or increment
+        if (cart[productId]) {
+            cart[productId].quantity += 1;
+        } else {
+            cart[productId] = { _id: product._id, name: product.name, image: product.image, price: product.price, quantity: 1 };
+        }
+        localStorage.setItem('ppCart', JSON.stringify(cart));
+
+        // Update badge
+        const badge = document.querySelector('.cart-badge');
+        if (badge) {
+            const total = Object.values(cart).reduce((s, i) => s + i.quantity, 0);
+            badge.textContent = total;
+            badge.style.display = 'inline-flex';
+        }
+
+        // If logged in, sync with API (fire-and-forget)
+        const token = localStorage.getItem('ppToken');
+        if (token) {
+            fetch('/api/cart/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ productId, quantity: 1 })
+            }).catch(() => {});
+        }
+
+        // Visual feedback on button
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Added!';
+        btn.style.background = '#28a745';
+        btn.disabled = true;
+        setTimeout(() => {
+            btn.innerHTML = original;
+            btn.style.background = '';
+            btn.disabled = false;
+        }, 1500);
+    }
+
+    async function loadHomeSections() {
+        try {
+            const shopRes = await fetch('/api/products');
+            if (!shopRes.ok) throw new Error();
+            const allProducts = await shopRes.json();
+
+            const newRes = await fetch('/api/products?limit=3');
+            if (!newRes.ok) throw new Error();
+            const newProducts = await newRes.json();
+
+            const shopEl = document.getElementById('shopContainer');
+            const newEl  = document.getElementById('newContainer');
+
+            shopEl.innerHTML = allProducts.length
+                ? allProducts.map(makeBox).join('')
+                : '<p style="color:#999;padding:20px;">No products found.</p>';
+
+            newEl.innerHTML = newProducts.length
+                ? newProducts.map(makeBox).join('')
+                : '<p style="color:#999;padding:20px;">No new arrivals yet.</p>';
+
+        } catch {
+            document.getElementById('shopSkeleton').style.opacity = '1';
+        }
+    }
+
+    loadHomeSections();
+
+    // ----- Offer Section -----
+    let offerCountdownInterval = null;
+
+    function startOfferCountdown(targetDate) {
+        if (offerCountdownInterval) clearInterval(offerCountdownInterval);
+        function tick() {
+            const diff = new Date(targetDate) - new Date();
+            const times = document.querySelectorAll('#offerSection .time');
+            if (!times.length) return;
+            if (diff <= 0) {
+                times.forEach(el => el.textContent = '00');
+                clearInterval(offerCountdownInterval);
+                return;
+            }
+            const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            [days, hours, minutes, seconds].forEach((v, i) => {
+                if (times[i]) times[i].textContent = String(v).padStart(2, '0');
+            });
+        }
+        tick();
+        offerCountdownInterval = setInterval(tick, 1000);
+    }
+
+    // ----- Add Offer to Cart -----
+    function addOfferToCart(btn, offerId, offerJson) {
+        const offer = JSON.parse(offerJson);
+
+        let cart = {};
+        try {
+            const raw = JSON.parse(localStorage.getItem('ppCart') || 'null');
+            if (raw && !Array.isArray(raw)) cart = raw;
+            else if (Array.isArray(raw)) {
+                raw.forEach(item => { if (item && item._id) cart[item._id] = item; });
+            }
+        } catch {}
+
+        if (cart[offerId]) {
+            cart[offerId].quantity += 1;
+        } else {
+            cart[offerId] = {
+                _id: offerId,
+                name: offer.title,
+                image: offer.image1 || 'favi.jpeg',
+                price: offer.price,
+                quantity: 1
+            };
+        }
+        localStorage.setItem('ppCart', JSON.stringify(cart));
+
+        // Update badge
+        const badge = document.querySelector('.cart-badge');
+        if (badge) {
+            const total = Object.values(cart).reduce((s, i) => s + i.quantity, 0);
+            badge.textContent = total;
+            badge.style.display = 'inline-flex';
+        }
+
+        // Sync with API if logged in
+        const token = localStorage.getItem('ppToken');
+        if (token) {
+            fetch('/api/cart/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ productId: offerId, quantity: 1 })
+            }).catch(() => {});
+        }
+
+        // Visual feedback then redirect
+        btn.textContent = 'Added! Going to cart...';
+        btn.disabled = true;
+        setTimeout(() => { window.location.href = 'cart.html'; }, 800);
+    }
+
+    async function loadOffer() {
+        try {
+            const res = await fetch('/api/offers');
+            if (!res.ok) return;
+            const offers = await res.json();
+            if (!offers.length) return;
+
+            const o = offers[0];
+            const section = document.getElementById('offerSection');
+            const container = document.getElementById('offerContainer');
+
+            const img1 = o.image1 ? `<img src="img/${o.image1}" loading="lazy" alt="offer">` : `<img src="img/o1.jpg" loading="lazy" alt="offer">`;
+            const img2 = o.image2 ? `<img src="img/${o.image2}" loading="lazy" alt="offer">` : `<img src="img/o2.jpg" loading="lazy" alt="offer">`;
+
+            const encoded = encodeURIComponent(JSON.stringify({ title: o.title, image1: o.image1, price: o.price }));
+
+            container.innerHTML = `
+                <figure class="offer-banner">${img1}${img2}</figure>
+                <div class="offer-content">
+                    <p class="offer-subtitle">
+                        <span class="span">${o.subtitle}</span>
+                        <span class="badge">${o.discount}</span>
+                    </p>
+                    <h2 class="section-title">${o.title}</h2>
+                    <p class="section-text">${o.description}</p>
+                    <div class="countdown">
+                        <div class="countdown-item"><span class="time">00</span><small>Days</small></div>
+                        <span class="countdown-sep">:</span>
+                        <div class="countdown-item"><span class="time">00</span><small>Hrs</small></div>
+                        <span class="countdown-sep">:</span>
+                        <div class="countdown-item"><span class="time">00</span><small>Mins</small></div>
+                        <span class="countdown-sep">:</span>
+                        <div class="countdown-item"><span class="time">00</span><small>Secs</small></div>
+                    </div>
+                    <button class="btn btn-primary" onclick="addOfferToCart(this, '${o._id}', decodeURIComponent('${encoded}'))">
+                        Get Now &mdash; ${Number(o.price).toLocaleString()} PKR
+                    </button>
+                </div>`;
+
+            section.style.display = '';
+            startOfferCountdown(o.targetDate);
+        } catch {}
+    }
+    loadOffer();
+</script>
+<script src="chatbot.js"></script>
+</body>
+</html>
