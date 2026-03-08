@@ -230,10 +230,14 @@ http://localhost:3000
 
 ---
 
-## 👨‍💻 Developer
+## 👨‍💻 Developers
 
-**Ch. Wajahat Amjad**
-BS Computer Science — GC University Faisalabad
+**Sanam Kousar**
+**Basharat Saleem**
+**Mahwish Iftikhar**
+**Kanwal Ashiq**
+**Saima Nawaz**
+Gomal University, United College Hazrat Sultan Bahoo
 
 ---
 
