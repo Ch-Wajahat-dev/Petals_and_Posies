@@ -261,15 +261,9 @@
         <div id="pp-chat-messages"></div>
 
         <div id="pp-quick-replies">
-            <button class="pp-quick-btn" data-q="What flowers do you have?">🌸 Our Flowers</button>
-            <button class="pp-quick-btn" data-q="What are your prices?">💰 Prices</button>
-            <button class="pp-quick-btn" data-q="How do I add item to cart?">🛒 Add to Cart</button>
-            <button class="pp-quick-btn" data-q="How do I remove item from cart?">🗑️ Remove Item</button>
             <button class="pp-quick-btn" data-q="How long does delivery take?">⏱️ Delivery Time</button>
             <button class="pp-quick-btn" data-q="Does this store have limited time offers?">🏷️ Offers</button>
             <button class="pp-quick-btn" data-q="Is delivery free?">📦 Delivery Fee</button>
-            <button class="pp-quick-btn" data-q="How do I checkout?">✅ Checkout</button>
-            <button class="pp-quick-btn" data-q="Do you deliver?">🚚 Delivery</button>
             <button class="pp-quick-btn" data-q="Where are you located?">📍 Location</button>
             <button class="pp-quick-btn" data-q="What payment methods do you accept?">💳 Payment</button>
             <button class="pp-quick-btn" data-q="How do I track my order?">📦 My Order</button>
@@ -289,6 +283,7 @@
 
     /* ─── Q&A Data ───────────────────────────────────────────── */
     const qa = [
+        
         {
             patterns: ['hello', 'hi', 'hey', 'helo', 'salam', 'assalam', 'good morning', 'good evening'],
             answer: "Hello! Welcome to Petals & Posies 🌸 I'm PetalsBot. How can I help you today?"
